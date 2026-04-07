@@ -116,24 +116,27 @@ const nodes = { texts: [], all: [] };
 safeWalk(improvedCard, nodes);
 ```
 
-#### 5c — Appliquer les corrections
+#### 5c — Appliquer les corrections AGRESSIVES
 
-À partir des critères ATT et KO, appliquer les fixes sur le clone. Catégories courantes :
+À partir des critères ATT et KO, appliquer les fixes sur le clone. **Chaque correction doit être VISIBLE dans un screenshot côte-à-côte à 50% zoom.** Pas de micro-ajustements invisibles.
 
-| Catégorie | Correction type |
-|-----------|----------------|
-| **Ombres** | 2 couches : `{type:"DROP_SHADOW", blendMode:"NORMAL", color:{r:0,g:0,b:0,a:0.15}, offset:{x:0,y:4}, radius:12, visible:true}` + idem `y:12/r:32/a:0.10` |
-| **Bordure** | Stroke 1px subtil (5-10% opacity) ou `INNER_SHADOW` glow |
-| **Séparateurs** | Lignes 1px entre sections (8-15% opacity) |
-| **Typographie** | Hiérarchie par **weight** (Bold titre, Regular body) |
-| **Couleurs texte** | Delta luminosité clair entre titre / body / metadata |
-| **Line-height** | Body ≥ 1.5, Titre ≥ 1.2 |
-| **Padding** | Minimum 16-24px |
-| **Espacement** | Large entre sections, serré intra-groupe |
-| **Gris teintés** | 1-3% saturation couleur de marque |
-| **Corner radius** | Enfant = parent − padding |
+| Catégorie | Correction AGRESSIVE |
+|-----------|---------------------|
+| **Ombres** | 2 couches FORTES : `y:4/r:12/a:0.15` + `y:12/r:32/a:0.10` |
+| **Bordure** | Stroke 1-2px **visible** (15-25% opacity). Dark cards : `INNER_SHADOW` glow 18% |
+| **Séparateurs** | 1px entre CHAQUE section logique (10-15% opacity) — image↔contenu, desc↔metadata, metadata↔prix |
+| **CTA** | Bouton rempli + Semi Bold + padding horizontal +8px → visuellement plus imposant |
+| **Typographie** | Weight > size. Delta font-size minimum ±2px (pas ±1px) |
+| **Couleurs texte** | Delta luminosité **≥40%** entre titre et body. Metadata encore plus différent du body |
+| **Line-height** | Body 1.5→1.6, Titre ≥ 1.4. Delta minimum +0.2 |
+| **Padding** | Delta minimum +8px (ex: 16→24px). Doit être perceptible |
+| **Espacement** | 32px entre sections majeures, 12px sous-groupes, 4px intra — restructurer visiblement |
+| **Gris teintés** | 4-8% saturation (pas 2%) de la couleur d'accent |
+| **Corner radius** | Enfant = parent − padding. Harmoniser TOUS les radius |
 | **Contraste** | WCAG : texte ≥ 4.5:1, UI ≥ 3:1 |
 
+> **RÈGLE DU SCREENSHOT** : après chaque correction, se demander "est-ce visible à 50% zoom côte-à-côte ?" — si NON, amplifier. Viser **8-12 corrections** visibles par card.
+>
 > **Chaque accès à un nœud enfant doit être dans un try/catch.**
 
 #### 5d — Positionner Avant / Après
