@@ -33,26 +33,33 @@ cd ~/.copilot/skills
 git clone https://github.com/arnaudmorvan/review-card.git review-card
 ```
 
-2. The skill is available immediately — no restart needed.
+2. Add the Figma MCP server to your `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "figma": {
+      "type": "sse",
+      "url": "https://mcp.figma.com/sse",
+      "headers": {
+        "Authorization": "Bearer YOUR_FIGMA_ACCESS_TOKEN"
+      }
+    }
+  }
+}
+```
+
+3. The skill is available immediately — no restart needed.
 
 ### Claude Desktop
 
-1. **Find your skills directory.** Open the Claude Desktop config file:
+1. **Open the Claude Desktop config file:**
 
 ```bash
 open ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-Look for the path pointing to your `skills/user` folder — that's where you'll clone the repo.
-
-2. **Clone the repo:**
-
-```bash
-cd /path/to/your/skills/user
-git clone https://github.com/arnaudmorvan/review-card.git review-card
-```
-
-3. **Make sure the Figma MCP server is connected.** In `claude_desktop_config.json`, verify you have:
+2. **Make sure the Figma MCP server is connected.** Add or verify:
 
 ```json
 {
@@ -68,13 +75,20 @@ git clone https://github.com/arnaudmorvan/review-card.git review-card
 }
 ```
 
+3. **Clone the repo** into your skills directory (find the `skills/user` path in your config):
+
+```bash
+cd /path/to/your/skills/user
+git clone https://github.com/arnaudmorvan/review-card.git review-card
+```
+
 > **Figma token:** Go to Figma → Settings → Security → Personal access tokens → Generate new token.
 
 4. **Restart Claude Desktop.** Skills are loaded at startup.
 
 ### Claude Code (terminal)
 
-Add to `~/.claude.json`:
+1. Add the Figma MCP server to `~/.claude.json`:
 
 ```json
 {
@@ -89,23 +103,14 @@ Add to `~/.claude.json`:
 }
 ```
 
-## Connecting the Figma MCP Server (VS Code)
+2. Clone the repo:
 
-Add to your `.vscode/mcp.json`:
-
-```json
-{
-  "servers": {
-    "figma": {
-      "type": "sse",
-      "url": "https://mcp.figma.com/sse",
-      "headers": {
-        "Authorization": "Bearer YOUR_FIGMA_ACCESS_TOKEN"
-      }
-    }
-  }
-}
+```bash
+cd ~/.copilot/skills
+git clone https://github.com/arnaudmorvan/review-card.git review-card
 ```
+
+> **Figma token:** Go to Figma → Settings → Security → Personal access tokens → Generate new token.
 
 ## How to Use
 
